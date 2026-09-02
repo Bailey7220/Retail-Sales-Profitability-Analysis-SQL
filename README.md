@@ -32,3 +32,6 @@ OrderLineID.
 !!!!!!!!!!!
 
 Sales displayed a strong year-end seasonal pattern, with December 2025 producing the highest observed monthly net revenue ($1.39M) and gross profit ($355.2K). Gross margin remained stable at approximately 25%, suggesting that revenue growth was not driven by substantial margin erosion.
+
+
+Apparel was the largest contributor to both net revenue ($7.55M) and gross profit ($1.99M). Electronics generated the highest gross margin at 27.35%, while Grocery produced the weakest margin at 22.20%, indicating an opportunity to review pricing, promotion, product mix, or supplier costs within lower-margin categories.
