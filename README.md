@@ -14,8 +14,15 @@ financial improvement opportunities.
 - Optional: Excel and Power BI for visualization
 
 ## Dataset:
-A simulated retail dataset consisting of three related tables:
-customers, products, and sales.
+This project uses a synthetic multi-channel retail dataset created for
+portfolio and educational purposes. The dataset contains transactional
+order-line data and supporting dimension tables for customers, products,
+stores, returns, monthly sales targets, and dates.
+
+The dataset covers sales activity from 2024 through 2026 and does not
+contain real company, customer, or employer data.
 
 ## Data Grain:
-One row in the sales table represents one sales transaction or order line.
+The orders table is the primary fact table. One row represents one product
+line within a customer order, identified by the combination of OrderID and
+OrderLineID.
