@@ -6,8 +6,10 @@ SELECT
     o.OrderLineID,
     o.OrderDate,
     o.CustomerID,
-    c.CustomerName,
-    c.CustomerSegment,
+    TRIM(c.FirstName || ' ' || c.LastName) AS CustomerName,
+    c.MembershipTier,
+    c.State AS CustomerState,
+    c.SignupDate,
     o.ProductID,
     p.ProductName,
     p.Category,
@@ -15,20 +17,35 @@ SELECT
     p.Supplier,
     o.StoreID,
     COALESCE(s.StoreName, 'Unassigned Store') AS StoreName,
-    COALESCE(s.City, 'Unassigned') AS City,
-    COALESCE(s.State, 'Unassigned') AS State,
+    COALESCE(s.City, 'Unassigned') AS StoreCity,
+    COALESCE(s.State, 'Unassigned') AS StoreState,
     COALESCE(s.Region, 'Unassigned') AS Region,
     COALESCE(s.StoreType, 'Unassigned') AS StoreType,
-    o.SalesChannel,
+    o.Channel,
+    o.ShipStateRaw,
     o.Quantity,
     o.UnitPrice,
-    o.DiscountAmount,
+    o.DiscountPct,
     p.UnitCost,
     ROUND(o.Quantity * o.UnitPrice, 2) AS GrossRevenue,
-    ROUND((o.Quantity * o.UnitPrice) - o.DiscountAmount, 2) AS NetRevenue,
-    ROUND(o.Quantity * p.UnitCost, 2) AS COGS,
     ROUND(
-        ((o.Quantity * o.UnitPrice) - o.DiscountAmount)
+        o.Quantity * o.UnitPrice * o.DiscountPct,
+        2
+    ) AS DiscountAmount,
+    ROUND(
+        (o.Quantity * o.UnitPrice)
+        - (o.Quantity * o.UnitPrice * o.DiscountPct),
+        2
+    ) AS NetRevenue,
+    ROUND(
+        o.Quantity * p.UnitCost,
+        2
+    ) AS COGS,
+    ROUND(
+        (
+            (o.Quantity * o.UnitPrice)
+            - (o.Quantity * o.UnitPrice * o.DiscountPct)
+        )
         - (o.Quantity * p.UnitCost),
         2
     ) AS GrossProfit
