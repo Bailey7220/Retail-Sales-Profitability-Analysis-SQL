@@ -44,3 +44,6 @@ Apparel had the highest true unit return rate at 5.65% and the largest return vo
 
 
 Monthly revenue performance varied materially by region. Southeast exceeded target by $13.7K in October 2025, reaching 107.9% of plan, while Northeast missed target by $19.9K in December 2024, reaching 92.8%. March 2026 was a particularly strong period: all five regions met or exceeded their revenue targets.
+
+
+Tools Item 2 generated $761.0K in net revenue but had a 7.06% unit return rate and only a 14.49% gross margin. Because it combines substantial sales volume, elevated returns, and low profitability, it is a high-priority candidate for product-quality, pricing, supplier-cost, packaging, or customer-expectation review.
