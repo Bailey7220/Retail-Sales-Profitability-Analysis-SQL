@@ -26,3 +26,9 @@ contain real company, customer, or employer data.
 The orders table is the primary fact table. One row represents one product
 line within a customer order, identified by the combination of OrderID and
 OrderLineID.
+
+
+
+!!!!!!!!!!!
+
+Sales displayed a strong year-end seasonal pattern, with December 2025 producing the highest observed monthly net revenue ($1.39M) and gross profit ($355.2K). Gross margin remained stable at approximately 25%, suggesting that revenue growth was not driven by substantial margin erosion.
