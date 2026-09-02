@@ -1,4 +1,4 @@
-# Retail-Sales-Profitability-Analysis-SQL
+## Retail-Sales-Profitability-Analysis-SQL
 
 # Business Problem:
 A simulated multi-channel retailer needs to understand which products,
