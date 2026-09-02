@@ -35,3 +35,6 @@ Sales displayed a strong year-end seasonal pattern, with December 2025 producing
 
 
 Apparel was the largest contributor to both net revenue ($7.55M) and gross profit ($1.99M). Electronics generated the highest gross margin at 27.35%, while Grocery produced the weakest margin at 22.20%, indicating an opportunity to review pricing, promotion, product mix, or supplier costs within lower-margin categories.
+
+
+In-Club was the largest sales channel, generating $14.35M in net revenue and $3.67M in gross profit. Curbside had the highest unit return rate at 5.83%, compared with 5.41% for In-Club and 5.21% for Online, indicating a potential opportunity to investigate order accuracy, product substitution, pickup quality, or customer-expectation issues in the curbside process.
