@@ -38,3 +38,6 @@ Apparel was the largest contributor to both net revenue ($7.55M) and gross profi
 
 
 In-Club was the largest sales channel, generating $14.35M in net revenue and $3.67M in gross profit. Curbside had the highest unit return rate at 5.83%, compared with 5.41% for In-Club and 5.21% for Online, indicating a potential opportunity to investigate order accuracy, product substitution, pickup quality, or customer-expectation issues in the curbside process.
+
+
+Apparel generated the largest returned-unit volume across all major return reasons. “Better Price Found” and “Damaged in Shipping” were the two largest Apparel return drivers, at 500 and 490 returned units, respectively. This suggests an opportunity to examine competitive pricing, promotion strategy, packaging, and fulfillment handling for high-volume Apparel products.
