@@ -41,3 +41,6 @@ In-Club was the largest sales channel, generating $14.35M in net revenue and $3.
 
 
 Apparel had the highest true unit return rate at 5.65% and the largest return volume, with “Better Price Found” and “Damaged in Shipping” among the leading recorded reasons. The analysis recommends reviewing Apparel pricing/promotion competitiveness and fulfillment packaging or handling before expanding intervention to other categories.
+
+
+Monthly revenue performance varied materially by region. Southeast exceeded target by $13.7K in October 2025, reaching 107.9% of plan, while Northeast missed target by $19.9K in December 2024, reaching 92.8%. March 2026 was a particularly strong period: all five regions met or exceeded their revenue targets.
