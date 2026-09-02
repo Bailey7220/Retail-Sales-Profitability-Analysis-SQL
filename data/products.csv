@@ -1,0 +1,161 @@
+ProductID,ProductName,Category,SubCategory,UnitCost,UnitPrice,Supplier
+1001,Beverages Item 1,Grocery,Beverages,193.95,349.82,Supplier 14
+1002,Beverages Item 2,Grocery,Beverages,60.5,73.81,Supplier 5
+1003,Beverages Item 3,Grocery,Beverages,114.99,191.72,Supplier 3
+1004,Beverages Item 4,Grocery,Beverages,94.43,119.96,Supplier 5
+1005,Beverages Item 5,Grocery,Beverages,176.35,273.44,Supplier 2
+1006,Beverages Item 6,Grocery,Beverages,153.46,192.15,Supplier 12
+1007,Beverages Item 7,Grocery,Beverages,63.47,89.23,Supplier 5
+1008,Beverages Item 8,Grocery,Beverages,247.41,376.0,Supplier 9
+1009,Beverages Item 9,Grocery,Beverages,57.24,76.04,Supplier 13
+1010,Beverages Item 10,Grocery,Beverages,194.67,249.17,Supplier 1
+1011,Snacks Item 1,Grocery,Snacks,201.85,276.64,Supplier 2
+1012,Snacks Item 2,Grocery,Snacks,55.11,97.17,Supplier 15
+1013,Snacks Item 3,Grocery,Snacks,180.32,229.35,Supplier 8
+1014,Snacks Item 4,Grocery,Snacks,100.72,174.97,Supplier 8
+1015,Snacks Item 5,Grocery,Snacks,38.29,47.38,Supplier 12
+1016,Snacks Item 6,Grocery,Snacks,141.66,183.69,Supplier 10
+1017,Snacks Item 7,Grocery,Snacks,108.82,161.23,Supplier 6
+1018,Snacks Item 8,Grocery,Snacks,57.17,103.81,Supplier 9
+1019,Snacks Item 9,Grocery,Snacks,124.9,200.4,Supplier 14
+1020,Snacks Item 10,Grocery,Snacks,30.08,45.45,Supplier 13
+1021,Bakery Item 1,Grocery,Bakery,171.08,254.93,Supplier 7
+1022,Bakery Item 2,Grocery,Bakery,97.26,176.46,Supplier 9
+1023,Bakery Item 3,Grocery,Bakery,65.1,95.17,Supplier 1
+1024,Bakery Item 4,Grocery,Bakery,171.03,209.69,Supplier 15
+1025,Bakery Item 5,Grocery,Bakery,135.63,176.15,Supplier 11
+1026,Bakery Item 6,Grocery,Bakery,87.02,114.21,Supplier 3
+1027,Bakery Item 7,Grocery,Bakery,115.07,204.08,Supplier 15
+1028,Bakery Item 8,Grocery,Bakery,180.76,323.69,Supplier 13
+1029,Bakery Item 9,Grocery,Bakery,47.13,81.79,Supplier 14
+1030,Bakery Item 10,Grocery,Bakery,157.45,263.51,Supplier 9
+1031,Dairy Item 1,Grocery,Dairy,153.42,190.79,Supplier 13
+1032,Dairy Item 2,Grocery,Dairy,42.9,76.07,Supplier 15
+1033,Dairy Item 3,Grocery,Dairy,134.0,157.68,Supplier 6
+1034,Dairy Item 4,Grocery,Dairy,123.69,151.5,Supplier 6
+1035,Dairy Item 5,Grocery,Dairy,220.04,366.43,Supplier 5
+1036,Dairy Item 6,Grocery,Dairy,62.14,79.9,Supplier 10
+1037,Dairy Item 7,Grocery,Dairy,236.9,287.39,Supplier 8
+1038,Dairy Item 8,Grocery,Dairy,204.56,367.51,Supplier 9
+1039,Dairy Item 9,Grocery,Dairy,192.16,236.8,Supplier 8
+1040,Dairy Item 10,Grocery,Dairy,236.87,295.92,Supplier 9
+1041,TVs Item 1,Electronics,TVs,218.49,302.17,Supplier 4
+1042,TVs Item 2,Electronics,TVs,232.44,372.85,Supplier 12
+1043,TVs Item 3,Electronics,TVs,52.68,69.64,Supplier 11
+1044,TVs Item 4,Electronics,TVs,163.52,227.56,Supplier 9
+1045,TVs Item 5,Electronics,TVs,114.52,147.65,Supplier 2
+1046,TVs Item 6,Electronics,TVs,86.51,128.45,Supplier 4
+1047,TVs Item 7,Electronics,TVs,148.34,174.96,Supplier 12
+1048,TVs Item 8,Electronics,TVs,158.88,203.35,Supplier 15
+1049,TVs Item 9,Electronics,TVs,10.76,14.33,Supplier 9
+1050,TVs Item 10,Electronics,TVs,61.79,95.16,Supplier 4
+1051,Laptops Item 1,Electronics,Laptops,136.19,215.15,Supplier 15
+1052,Laptops Item 2,Electronics,Laptops,144.05,203.4,Supplier 13
+1053,Laptops Item 3,Electronics,Laptops,119.82,164.61,Supplier 2
+1054,Laptops Item 4,Electronics,Laptops,26.94,37.38,Supplier 7
+1055,Laptops Item 5,Electronics,Laptops,104.54,176.93,Supplier 1
+1056,Laptops Item 6,Electronics,Laptops,169.32,305.22,Supplier 2
+1057,Laptops Item 7,Electronics,Laptops,17.97,28.45,Supplier 13
+1058,Laptops Item 8,Electronics,Laptops,215.83,278.35,Supplier 4
+1059,Laptops Item 9,Electronics,Laptops,135.46,167.66,Supplier 3
+1060,Laptops Item 10,Electronics,Laptops,71.8,92.64,Supplier 15
+1061,Accessories Item 1,Electronics,Accessories,21.62,35.58,Supplier 14
+1062,Accessories Item 2,Electronics,Accessories,138.93,166.42,Supplier 9
+1063,Accessories Item 3,Electronics,Accessories,209.5,374.57,Supplier 15
+1064,Accessories Item 4,Electronics,Accessories,189.13,242.76,Supplier 7
+1065,Accessories Item 5,Electronics,Accessories,122.95,156.45,Supplier 7
+1066,Accessories Item 6,Electronics,Accessories,225.9,282.16,Supplier 1
+1067,Accessories Item 7,Electronics,Accessories,246.37,319.78,Supplier 13
+1068,Accessories Item 8,Electronics,Accessories,196.93,257.62,Supplier 12
+1069,Accessories Item 9,Electronics,Accessories,239.46,434.3,Supplier 9
+1070,Accessories Item 10,Electronics,Accessories,166.48,236.48,Supplier 4
+1071,Furniture Item 1,Home & Garden,Furniture,76.29,136.38,Supplier 10
+1072,Furniture Item 2,Home & Garden,Furniture,184.73,222.11,Supplier 6
+1073,Furniture Item 3,Home & Garden,Furniture,17.12,25.37,Supplier 9
+1074,Furniture Item 4,Home & Garden,Furniture,230.09,333.14,Supplier 1
+1075,Furniture Item 5,Home & Garden,Furniture,240.31,290.94,Supplier 3
+1076,Furniture Item 6,Home & Garden,Furniture,19.92,24.01,Supplier 14
+1077,Furniture Item 7,Home & Garden,Furniture,61.1,75.06,Supplier 15
+1078,Furniture Item 8,Home & Garden,Furniture,143.71,212.49,Supplier 1
+1079,Furniture Item 9,Home & Garden,Furniture,155.99,215.39,Supplier 10
+1080,Furniture Item 10,Home & Garden,Furniture,142.61,188.87,Supplier 5
+1081,Outdoor Item 1,Home & Garden,Outdoor,53.45,84.15,Supplier 4
+1082,Outdoor Item 2,Home & Garden,Outdoor,68.61,84.63,Supplier 11
+1083,Outdoor Item 3,Home & Garden,Outdoor,77.1,102.1,Supplier 13
+1084,Outdoor Item 4,Home & Garden,Outdoor,234.13,276.36,Supplier 10
+1085,Outdoor Item 5,Home & Garden,Outdoor,249.62,452.89,Supplier 2
+1086,Outdoor Item 6,Home & Garden,Outdoor,135.8,194.49,Supplier 3
+1087,Outdoor Item 7,Home & Garden,Outdoor,233.52,398.67,Supplier 15
+1088,Outdoor Item 8,Home & Garden,Outdoor,63.34,82.85,Supplier 8
+1089,Outdoor Item 9,Home & Garden,Outdoor,208.94,327.01,Supplier 10
+1090,Outdoor Item 10,Home & Garden,Outdoor,246.01,404.71,Supplier 9
+1091,Tools Item 1,Home & Garden,Tools,4.93,8.15,Supplier 5
+1092,Tools Item 2,Home & Garden,Tools,233.14,284.69,Supplier 15
+1093,Tools Item 3,Home & Garden,Tools,36.17,44.36,Supplier 2
+1094,Tools Item 4,Home & Garden,Tools,186.38,232.0,Supplier 5
+1095,Tools Item 5,Home & Garden,Tools,152.39,240.09,Supplier 4
+1096,Tools Item 6,Home & Garden,Tools,172.81,290.86,Supplier 9
+1097,Tools Item 7,Home & Garden,Tools,123.67,213.81,Supplier 14
+1098,Tools Item 8,Home & Garden,Tools,15.55,23.57,Supplier 14
+1099,Tools Item 9,Home & Garden,Tools,71.34,84.03,Supplier 13
+1100,Tools Item 10,Home & Garden,Tools,35.31,63.5,Supplier 3
+1101,Men's Item 1,Apparel,Men's,186.08,271.85,Supplier 7
+1102,Men's Item 2,Apparel,Men's,141.54,173.36,Supplier 15
+1103,Men's Item 3,Apparel,Men's,173.68,215.68,Supplier 1
+1104,Men's Item 4,Apparel,Men's,209.14,309.72,Supplier 3
+1105,Men's Item 5,Apparel,Men's,109.16,130.35,Supplier 6
+1106,Men's Item 6,Apparel,Men's,225.05,368.23,Supplier 14
+1107,Men's Item 7,Apparel,Men's,12.85,17.3,Supplier 11
+1108,Men's Item 8,Apparel,Men's,64.63,78.9,Supplier 13
+1109,Men's Item 9,Apparel,Men's,141.29,240.46,Supplier 10
+1110,Men's Item 10,Apparel,Men's,188.12,328.73,Supplier 4
+1111,Women's Item 1,Apparel,Women's,216.56,388.7,Supplier 13
+1112,Women's Item 2,Apparel,Women's,46.73,64.34,Supplier 3
+1113,Women's Item 3,Apparel,Women's,184.93,246.46,Supplier 15
+1114,Women's Item 4,Apparel,Women's,104.69,161.3,Supplier 12
+1115,Women's Item 5,Apparel,Women's,203.26,263.99,Supplier 13
+1116,Women's Item 6,Apparel,Women's,176.22,239.68,Supplier 1
+1117,Women's Item 7,Apparel,Women's,215.07,274.58,Supplier 14
+1118,Women's Item 8,Apparel,Women's,229.86,308.49,Supplier 14
+1119,Women's Item 9,Apparel,Women's,199.45,255.14,Supplier 1
+1120,Women's Item 10,Apparel,Women's,166.03,227.3,Supplier 5
+1121,Kids' Item 1,Apparel,Kids',216.5,386.65,Supplier 5
+1122,Kids' Item 2,Apparel,Kids',89.73,128.7,Supplier 11
+1123,Kids' Item 3,Apparel,Kids',245.34,356.01,Supplier 1
+1124,Kids' Item 4,Apparel,Kids',31.49,56.34,Supplier 3
+1125,Kids' Item 5,Apparel,Kids',146.41,263.83,Supplier 1
+1126,Kids' Item 6,Apparel,Kids',29.78,41.38,Supplier 12
+1127,Kids' Item 7,Apparel,Kids',197.25,274.31,Supplier 9
+1128,Kids' Item 8,Apparel,Kids',31.56,54.4,Supplier 4
+1129,Kids' Item 9,Apparel,Kids',65.92,103.43,Supplier 1
+1130,Kids' Item 10,Apparel,Kids',131.42,216.13,Supplier 11
+1131,Vitamins Item 1,Health & Wellness,Vitamins,180.7,288.01,Supplier 11
+1132,Vitamins Item 2,Health & Wellness,Vitamins,51.67,71.7,Supplier 11
+1133,Vitamins Item 3,Health & Wellness,Vitamins,230.43,347.53,Supplier 11
+1134,Vitamins Item 4,Health & Wellness,Vitamins,212.46,335.07,Supplier 5
+1135,Vitamins Item 5,Health & Wellness,Vitamins,128.26,197.34,Supplier 6
+1136,Vitamins Item 6,Health & Wellness,Vitamins,102.39,134.49,Supplier 3
+1137,Vitamins Item 7,Health & Wellness,Vitamins,50.38,77.45,Supplier 7
+1138,Vitamins Item 8,Health & Wellness,Vitamins,170.3,294.05,Supplier 10
+1139,Vitamins Item 9,Health & Wellness,Vitamins,143.57,197.16,Supplier 14
+1140,Vitamins Item 10,Health & Wellness,Vitamins,3.1,4.06,Supplier 7
+1141,Personal Care Item 1,Health & Wellness,Personal Care,197.08,295.03,Supplier 6
+1142,Personal Care Item 2,Health & Wellness,Personal Care,117.85,164.28,Supplier 4
+1143,Personal Care Item 3,Health & Wellness,Personal Care,129.26,211.25,Supplier 13
+1144,Personal Care Item 4,Health & Wellness,Personal Care,184.78,283.26,Supplier 5
+1145,Personal Care Item 5,Health & Wellness,Personal Care,130.32,197.42,Supplier 6
+1146,Personal Care Item 6,Health & Wellness,Personal Care,26.07,46.19,Supplier 4
+1147,Personal Care Item 7,Health & Wellness,Personal Care,169.18,216.17,Supplier 4
+1148,Personal Care Item 8,Health & Wellness,Personal Care,39.4,47.12,Supplier 8
+1149,Personal Care Item 9,Health & Wellness,Personal Care,153.98,248.57,Supplier 8
+1150,Personal Care Item 10,Health & Wellness,Personal Care,105.37,159.39,Supplier 4
+1151,Pharmacy Item 1,Health & Wellness,Pharmacy,180.43,245.55,Supplier 7
+1152,Pharmacy Item 2,Health & Wellness,Pharmacy,63.26,96.85,Supplier 1
+1153,Pharmacy Item 3,Health & Wellness,Pharmacy,223.49,377.6,Supplier 15
+1154,Pharmacy Item 4,Health & Wellness,Pharmacy,29.33,40.6,Supplier 3
+1155,Pharmacy Item 5,Health & Wellness,Pharmacy,201.62,314.43,Supplier 8
+1156,Pharmacy Item 6,Health & Wellness,Pharmacy,15.4,19.86,Supplier 14
+1157,Pharmacy Item 7,Health & Wellness,Pharmacy,32.98,40.72,Supplier 8
+1158,Pharmacy Item 8,Health & Wellness,Pharmacy,167.89,303.25,Supplier 10
+1159,Pharmacy Item 9,Health & Wellness,Pharmacy,81.37,130.52,Supplier 8
+1160,Pharmacy Item 10,Health & Wellness,Pharmacy,154.33,243.34,Supplier 9

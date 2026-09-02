@@ -1,0 +1,39 @@
+StoreID,StoreName,City,State,Region,StoreType,OpenDate
+6201,Club 6201,Edmond,OK,South Central,Neighborhood Market,2011-04-02
+6202,Club 6202,Edmond,OK,South Central,Club,2018-04-26
+6203,Club 6203,Plano,TX,South Central,Club,2012-09-30
+6204,Club 6204,Plano,TX,South Central,Club,2011-07-26
+6205,Club 6205,Bentonville,AR,South Central,Neighborhood Market,2011-02-24
+6206,Club 6206,Bentonville,AR,South Central,Neighborhood Market,2018-04-22
+6207,Club 6207,Shreveport,LA,South Central,Neighborhood Market,2010-12-23
+6208,Club 6208,Shreveport,LA,South Central,Neighborhood Market,2014-09-25
+6209,Club 6209,Tempe,AZ,Southwest,Club,2010-05-03
+6210,Club 6210,Tempe,AZ,Southwest,Club,2012-06-14
+6211,Club 6211,Las Cruces,NM,Southwest,Club,2015-09-01
+6212,Club 6212,Las Cruces,NM,Southwest,Neighborhood Market,2010-04-19
+6213,Club 6213,Henderson,NV,Southwest,Neighborhood Market,2012-03-25
+6214,Club 6214,Henderson,NV,Southwest,Neighborhood Market,2017-04-15
+6215,Club 6215,Overland Park,KS,Midwest,Neighborhood Market,2016-02-11
+6216,Club 6216,Overland Park,KS,Midwest,Club,2012-06-21
+6217,Club 6217,Springfield,MO,Midwest,Club,2016-08-10
+6218,Club 6218,Springfield,MO,Midwest,Club,2019-01-29
+6219,Club 6219,Omaha,NE,Midwest,Club,2018-07-06
+6220,Club 6220,Omaha,NE,Midwest,Club,2017-10-30
+6221,Club 6221,Cedar Rapids,IA,Midwest,Club,2013-10-25
+6222,Club 6222,Cedar Rapids,IA,Midwest,Club,2011-09-29
+6223,Club 6223,Marietta,GA,Southeast,Club,2020-09-25
+6224,Club 6224,Marietta,GA,Southeast,Club,2011-02-23
+6225,Club 6225,Tampa,FL,Southeast,Club,2014-04-06
+6226,Club 6226,Tampa,FL,Southeast,Club,2014-01-10
+6227,Club 6227,Franklin,TN,Southeast,Club,2016-10-08
+6228,Club 6228,Franklin,TN,Southeast,Club,2019-01-19
+6229,Club 6229,Huntsville,AL,Southeast,Club,2018-03-08
+6230,Club 6230,Huntsville,AL,Southeast,Club,2016-01-06
+6231,Club 6231,Albany,NY,Northeast,Club,2020-11-29
+6232,Club 6232,Albany,NY,Northeast,Club,2010-11-19
+6233,Club 6233,Allentown,PA,Northeast,Neighborhood Market,2013-04-15
+6234,Club 6234,Allentown,PA,Northeast,Neighborhood Market,2016-12-08
+6235,Club 6235,Trenton,NJ,Northeast,Club,2016-06-22
+6236,Club 6236,Trenton,NJ,Northeast,Club,2017-11-25
+6237,Club 6237,Worcester,MA,Northeast,Club,2010-07-07
+6238,Club 6238,Worcester,MA,Northeast,Neighborhood Market,2012-07-22
