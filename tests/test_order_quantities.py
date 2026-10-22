@@ -8,7 +8,8 @@ class OrderQuantityTests(unittest.TestCase):
         case = fixtures.WorkflowTests()
         case.setUp()
         self.addCleanup(case.doCleanups)
-        case.rows['orders'][0][9] = quantity
+        quantity_index = r.REQUIRED['orders'].split().index('Quantity')
+        case.rows['orders'][0][quantity_index] = quantity
         case.rows['returns'] = [['O01','L01',returned,'Reason']]
         return case.load()
 
