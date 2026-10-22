@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import platform
+import re
 import sqlite3
 import tempfile
 from datetime import date
@@ -64,6 +65,9 @@ def load(connection, folder):
                         if not math.isfinite(number):
                             raise ValueError(f'{table}:{line}: nonfinite {header}')
                         values.append(number)
+                    elif header == 'StoreID':
+                        # Normalize only an all-zero decimal suffix; preserve leading zeros.
+                        values.append(re.sub(r'^([0-9]+)\.0+$', r'\1', value))
                     elif header in DATES:
                         if date.fromisoformat(value).isoformat() != value:
                             raise ValueError(f'{table}:{line}: noncanonical date')
