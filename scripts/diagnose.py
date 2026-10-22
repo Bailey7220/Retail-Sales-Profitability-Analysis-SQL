@@ -27,6 +27,11 @@ JOIN (SELECT OrderID, OrderLineID FROM (""" + EXCESS_SQL + """)) a
   ON r.OrderID=a.OrderID AND r.OrderLineID=a.OrderLineID
 ORDER BY r.OrderID, r.OrderLineID
 """
+CONTEXT_SQL = """
+SELECT o.* FROM orders o
+WHERE o.OrderID IN (SELECT OrderID FROM (""" + EXCESS_SQL + """))
+ORDER BY o.OrderID, o.OrderLineID
+"""
 
 
 def export_query(connection, sql, destination):
@@ -55,9 +60,17 @@ def main():
                 r.validate(connection, r.COUNTS)
             except Exception as error:
                 report['errors'].append({'stage': 'strict_validation', 'error': str(error)})
-            for name, sql in [('excess_return_lines', EXCESS_SQL), ('affected_return_records', DETAIL_SQL)]:
+            for name, sql in [('excess_return_lines', EXCESS_SQL),
+                              ('affected_return_records', DETAIL_SQL),
+                              ('affected_order_context', CONTEXT_SQL)]:
                 headers, rows = export_query(connection, sql, output / (name + '.csv'))
                 report[name + '_count'] = len(rows)
+                report[name + '_rows'] = [dict(zip(headers, row)) for row in rows]
+            report['interpretation_boundary'] = (
+                'Order context can identify possible wrong-line associations, but a quantity match '
+                'on another line does not prove a generator defect or justify relinking records. '
+                'Original generator code and intent remain unverified.'
+            )
             for filename in r.SCRIPTS:
                 try:
                     text = (root / 'sql' / filename).read_text(encoding='utf-8-sig')
