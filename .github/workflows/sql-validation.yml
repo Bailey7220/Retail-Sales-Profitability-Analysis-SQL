@@ -8,24 +8,24 @@ permissions:
   contents: read
 jobs:
   reproduce:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Run fixture-based regression tests
+      - name: Run regression tests
         run: python -m unittest discover -s tests -v
-      - name: Validate repository CSVs and execute committed SQL
-        run: python scripts/reproduce.py
-      - name: Collect evidence after a validation failure
+      - name: Reproduce raw references and validate sales-only analysis
+        run: python scripts/analyze_layers.py
+      - name: Collect raw-data evidence after a failure
         if: failure()
         run: python scripts/diagnose.py
-      - name: Preserve outputs and failure diagnostics
+      - name: Preserve labeled outputs and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sql-outputs-and-diagnostics
+          name: sql-raw-sales-only-and-quarantine
           path: build/
           if-no-files-found: warn
