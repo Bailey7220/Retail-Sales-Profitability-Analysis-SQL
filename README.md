@@ -2,138 +2,97 @@
 
 A SQLite case study using synthetic retail data to investigate sales, profitability, returns, and regional revenue targets.
 
-[Source data](data/) | [SQL scripts](sql/) | [Model and metric definitions](sql/01_database_schema.md)
+[Source data](data/) | [SQL scripts](sql/) | [Model definitions](sql/01_database_schema.md) | [Verified results](results/)
 
-> Portfolio project only. The dataset contains no real employer, company, customer, or transaction data. Results illustrate analytical methods, not real business impact.
+> Synthetic portfolio data only. No real employer, company, customer, or transaction data is included. Findings do not represent real business impact.
 
 ## Business problem
 
-Which products, categories, channels, and regions deserve closer attention when reviewing retail sales and profitability? This project combines order-line data with supporting tables, checks data quality, and uses SQL to produce decision-oriented summaries.
+Which products, categories, channels, and regions deserve closer attention when reviewing retail sales and profitability?
 
 ## Results at a glance
 
-| Metric | Reported result |
+| Metric | Verified result |
 |---|---:|
-| Revenue after discounts | $25.91M |
-| Gross profit | $6.61M |
+| Revenue after discounts | $25,912,424.37 |
+| Gross profit | $6,607,883.84 |
 | Gross margin | 25.50% |
 | Distinct orders | 14,671 |
+| Order lines | 44,290 |
 | Average order value | $1,766.23 |
 
-These are the project's reported analysis results. Revenue is calculated after discounts, but revenue and gross profit are not adjusted for customer returns. Returns are analyzed separately. Gross profit is not net profit.
+Revenue and gross profit are not adjusted for customer returns; returns are analyzed separately. Gross profit is not net profit.
 
-[Executive KPI query](sql/04_executive_kpi_summary.sql)
+[Executive KPI output](results/executive_kpis.csv) | [Executive KPI query](sql/04_executive_kpi_summary.sql)
 
-## Three findings and proposed next steps
+## Category profitability
 
-### 1. Sales volume and margin tell different stories
+![Gross margin by category](images/category_gross_margin.svg)
 
-Apparel generated $7.55M in revenue and $1.99M in gross profit. Electronics had the highest category gross margin at 27.35%, compared with Grocery at 22.20%.
+Apparel leads category revenue at $7.55M. Electronics has the highest gross margin at 27.35%, narrowly ahead of Health & Wellness at 27.31%; Grocery has the lowest at 22.20%. The 0.04 percentage-point gap between the top two should not be overstated.
 
-Proposed next step: review Grocery pricing, discounts, supplier costs, and product mix rather than judging categories on revenue alone.
+Proposed follow-up: examine pricing, discounts, supplier costs, and product mix rather than judging categories by revenue alone.
 
-[Category profitability query](sql/06_category_profitability_analysis.sql)
+[Category output](results/category_profitability.csv) | [Category query](sql/06_category_profitability_analysis.sql)
 
-### 2. Return risk deserves product-level investigation
+## Other findings
 
-Tools Item 2 generated $761.0K in revenue, with a 7.06% unit return rate and a 14.49% gross margin. Apparel had a 5.65% category return rate.
+- Tools Item 2 generated approximately $761.0K in revenue, with a 7.06% unit return rate and 14.49% gross margin. Investigate potential quality or fulfillment issues; these results do not establish a cause. The product-risk query includes products with at least $150,000 in revenue, sorted by return rate and revenue, both descending.
+- All five regions exceeded their revenue targets in March 2026. Regional reporting includes only month-region combinations with sales and a matching target; unmatched combinations are not separately reported.
 
-The product return-risk query screens products with at least $150,000 in revenue after discounts, then sorts them by unit return rate and revenue, both descending. This focuses the review on higher-revenue products rather than the entire catalog.
+[Product-risk query](sql/10_product_return_risk_analysis.sql) | [Regional query](sql/09_regional_revenue_target_attainment.sql)
 
-Proposed next step: investigate quality, fulfillment, packaging, and customer expectations for products combining substantial sales, elevated returns, and low margins. These patterns identify questions; they do not establish causes or quantify savings.
+## Data coverage and model
 
-[Product return-risk query](sql/10_product_return_risk_analysis.sql)
+Order dates run from January 1, 2024 through July 28, 2026. July 2026 is incomplete; do not compare it directly with complete months or interpret it as full-month target attainment.
 
-### 3. Regional target attainment varies by month
+| Source table | Expected rows |
+|---|---:|
+| customers | 600 |
+| date_reference | 1,096 |
+| orders | 44,290 |
+| products | 160 |
+| returns | 2,657 |
+| sales_targets | 155 |
+| stores | 38 |
 
-Southeast achieved 107.9% of its October 2025 revenue target, while Northeast achieved 92.8% in December 2024. All five regions met or exceeded their targets in March 2026.
-
-Regional target reporting includes month-region combinations with both recorded sales and a matching target. Missing sales-target matches are not separately reported.
-
-Proposed next step: review monthly patterns to distinguish recurring underperformance from isolated misses.
-
-[Regional target query](sql/09_regional_revenue_target_attainment.sql)
-
-## Tools and methods
-
-- SQLite and DB Browser for SQLite.
-- Joins, CTEs, aggregations, window functions, and reusable views.
-- Row-count checks, order-to-customer/product/store match checks, KPI calculations, and business interpretation.
-
-## Data model
-
-The synthetic dataset includes sales activity from 2024 through 2026. One row in `orders` represents one product line within an order, identified by `OrderID` and `OrderLineID` together.
-
-| Table | Purpose |
-|---|---|
-| `orders` | Order-line sales, quantities, prices, and discounts |
-| `customers` | Customer attributes and membership tiers |
-| `products` | Product hierarchy, unit costs, and supplier details |
-| `stores` | Store attributes and regional assignments |
-| `returns` | Returned quantities, dates, and reasons |
-| `sales_targets` | Monthly regional revenue targets |
-| `date_reference` | Calendar reference attributes |
-
-```text
-customers -- CustomerID --> orders <-- ProductID -- products
-stores    -- StoreID ----> orders
-date_reference -- Date -> orders.OrderDate
-
-returns -- OrderID + OrderLineID --> orders
-
-sales_targets -- Month + Region --> monthly regional sales totals
-```
-
-This is a simplified relationship guide. Regional targets are compared with aggregated monthly regional sales, not joined directly to every order line.
+One row in `orders` is one product line within an order, identified by `OrderID` and `OrderLineID` together. Orders reference customers, products, stores, and calendar dates. Returns reference order lines using both identifiers. Regional targets are compared with monthly regional sales totals, not individual order lines.
 
 ## Calculation choices
 
 - Revenue after discounts = quantity x selling price x (1 - discount percentage).
-- COGS = quantity x product unit cost.
+- COGS = quantity x product unit cost; historical cost changes are not modeled.
 - Gross profit = revenue after discounts - COGS.
-- Overall gross margin = total gross profit / total revenue, rather than an average of row-level margins.
+- Overall gross margin = total gross profit / total revenue, not an average of row-level margins.
 - Unit return rate = returned units / units sold.
-- The enriched view uses left joins to retain order lines and labels missing store information as `Unassigned Store`.
-- The executive KPI query uses `NULLIF` to avoid division by zero in margin and average-order-value calculations.
+- The enriched view uses left joins and labels unmatched stores as `Unassigned Store`.
+- The executive query uses `NULLIF` to protect margin and average-order-value divisions from zero denominators.
 
-[Enriched sales view](sql/03_create_orders_enriched_view.sql) | [Metric definitions](sql/01_database_schema.md)
+## Validation and verification scope
+
+The uploaded CSVs were loaded into a fresh in-memory SQLite database. Reproduced SQL logic confirmed the headline KPIs and category results. This was not a verbatim execution of every repository script or a test of DB Browser's manual import workflow.
+
+- No unmatched customer or product references were found.
+- 485 order lines have missing `StoreID` values and no matching store record. They remain in company-wide KPIs but are excluded from regional reporting.
+- No duplicate keys were found for the checked order-line, customer, product, store, return, calendar-date, or month-region target keys.
+- No returns lacked a matching order line.
+
+The existing validation scripts check row counts and customer/product/store matches. Duplicate-key and return-match checks were additional checks in the verification analysis, not new functionality added to those scripts. These are targeted checks, not a complete data-quality test suite.
+
+[Validation output](results/validation_results.csv)
 
 ## How to run
 
-The following is a manual setup guide for DB Browser for SQLite. CSV import settings and inferred column types should be checked before relying on the outputs.
+1. Download the repository and create a SQLite database in DB Browser for SQLite.
+2. Import the seven CSVs from `data/`, using their first row as headers and each filename without `.csv` as the table name.
+3. Preserve column names, identifiers, and date strings. Check numeric types for quantities, prices, costs, discounts, and targets; save the imports.
+4. Run `01_row_count_audit.sql` and compare with the table above. It reports counts rather than asserting correctness.
+5. Run `02_key_integrity_check.sql`; expect zero customer/product issues and 485 store issues.
+6. Run `03_create_orders_enriched_view.sql`, which drops and recreates the shared view.
+7. Run scripts `04` through `10` individually. Compare KPI and category outputs with `results/` at the precision returned by the queries.
 
-1. Download this repository and create a new SQLite database in DB Browser for SQLite.
-2. Import each CSV in `data/` as a table. Use the first row as column names and retain the original headers. Name each table after its file without `.csv`: `customers`, `date_reference`, `orders`, `products`, `returns`, `sales_targets`, and `stores`.
-3. Review the imported data: quantities, prices, costs, discounts, and targets should be numeric. Preserve identifier values and date strings; check for lost leading zeros or changed date formats. Save the imported changes.
-4. Open and execute `sql/01_row_count_audit.sql`. Review the row counts for all seven tables. This script reports counts; it does not automatically assert that they are correct.
-5. Run `sql/02_key_integrity_check.sql` and review the customer, product, and store match counts.
-6. Run `sql/03_create_orders_enriched_view.sql` to create the shared analysis view. The script drops and recreates that view.
-7. Run scripts `04` through `10` individually and inspect each result table.
-8. Compare the executive KPI output with the rounded figures above. Investigate discrepancies rather than changing the data to match the summary.
+## Tools and limitations
 
-For a reproducibility check, record the seven source-table counts, the three match-check counts, and the executive KPI outputs at the precision returned by the queries. Expected source-table counts and exact KPI outputs are not supplied here; the summary above is not a substitute for running the scripts.
+SQLite, DB Browser for SQLite, joins, CTEs, aggregations, window functions, and reusable views support the analysis. The chart is a static SVG generated from the verified category output, not an interactive dashboard.
 
-## SQL workflow
-
-| Script | Purpose |
-|---|---|
-| [01_row_count_audit.sql](sql/01_row_count_audit.sql) | Report imported row counts |
-| [02_key_integrity_check.sql](sql/02_key_integrity_check.sql) | Check customer, product, and store references |
-| [03_create_orders_enriched_view.sql](sql/03_create_orders_enriched_view.sql) | Centralize joins and sales calculations |
-| [04_executive_kpi_summary.sql](sql/04_executive_kpi_summary.sql) | Summarize company-wide KPIs |
-| [05_monthly_sales_profit_trend.sql](sql/05_monthly_sales_profit_trend.sql) | Analyze monthly results and running revenue |
-| [06_category_profitability_analysis.sql](sql/06_category_profitability_analysis.sql) | Compare category profitability |
-| [07_channel_performance_and_returns.sql](sql/07_channel_performance_and_returns.sql) | Compare channels and unit return rates |
-| [08_return_reason_and_category_rate_analysis.sql](sql/08_return_reason_and_category_rate_analysis.sql) | Analyze return reasons and category rates |
-| [09_regional_revenue_target_attainment.sql](sql/09_regional_revenue_target_attainment.sql) | Compare monthly regional revenue with targets |
-| [10_product_return_risk_analysis.sql](sql/10_product_return_risk_analysis.sql) | Screen higher-revenue products for return-risk investigation |
-
-## Data quality and limitations
-
-- Validation scripts report table row counts and identify order lines without matching customer, product, or store records. They are targeted checks, not a complete data-quality test suite: duplicate keys, return-to-order matches, and target completeness are not checked by these two validation scripts.
-- The documented validation results report that all order lines matched customer and product records.
-- The documented results identify 485 order lines without a matching store record. They are retained in company-wide KPIs and labeled `Unassigned Store`, but excluded from regional target reporting. An unmatched reference can result from a missing store ID or an ID absent from the store table.
-- Revenue and gross profit are not return-adjusted and do not represent net earnings after operating expenses.
-- Product unit costs are taken from the product table; the calculation does not model historical cost changes.
-- Findings are descriptive. Suggested actions have not been implemented or evaluated for business impact.
-- The schema Markdown file documents the model; it is not an executable table-creation script.
+Results are descriptive. Proposed actions have not been implemented or evaluated for business impact. The schema Markdown file documents relationships and definitions; it is not an executable table-creation script.

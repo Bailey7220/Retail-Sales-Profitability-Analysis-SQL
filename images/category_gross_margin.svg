@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<rect width="900" height="430" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#172b4d">
+<text x="30" y="38" font-size="24">Gross margin by product category</text>
+<text x="30" y="66" font-size="14">Synthetic retail data | January 1, 2024 - July 28, 2026</text>
+<text x="30" y="123" font-size="16">Electronics</text>
+<rect x="220" y="100" width="464.95" height="32" rx="3" fill="#2874a6"/>
+<text x="694.95" y="123" font-size="16">27.35%</text>
+<text x="30" y="172" font-size="16">Health &amp; Wellness</text>
+<rect x="220" y="149" width="464.27" height="32" rx="3" fill="#2874a6"/>
+<text x="694.27" y="172" font-size="16">27.31%</text>
+<text x="30" y="221" font-size="16">Apparel</text>
+<rect x="220" y="198" width="448.29" height="32" rx="3" fill="#2874a6"/>
+<text x="678.29" y="221" font-size="16">26.37%</text>
+<text x="30" y="270" font-size="16">Home &amp; Garden</text>
+<rect x="220" y="247" width="406.81" height="32" rx="3" fill="#2874a6"/>
+<text x="636.81" y="270" font-size="16">23.93%</text>
+<text x="30" y="319" font-size="16">Grocery</text>
+<rect x="220" y="296" width="377.40" height="32" rx="3" fill="#2874a6"/>
+<text x="607.40" y="319" font-size="16">22.20%</text>
+<text x="220" y="370" font-size="13">Bars start at zero; scale maximum: 30%.</text>
+<text x="30" y="405" font-size="13">Gross profit / revenue after discounts. Not adjusted for customer returns.</text>
+</g></svg>
