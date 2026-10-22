@@ -111,7 +111,7 @@ The following is a manual setup guide for DB Browser for SQLite. CSV import sett
 7. Run scripts `04` through `10` individually and inspect each result table.
 8. Compare the executive KPI output with the rounded figures above. Investigate discrepancies rather than changing the data to match the summary.
 
-For a reproducibility check, record the seven source-table counts, the three match-check counts, and the executive KPI outputs before rounding. Expected source-table counts and exact KPI outputs are not supplied here; the summary above is not a substitute for running the scripts.
+For a reproducibility check, record the seven source-table counts, the three match-check counts, and the executive KPI outputs at the precision returned by the queries. Expected source-table counts and exact KPI outputs are not supplied here; the summary above is not a substitute for running the scripts.
 
 ## SQL workflow
 
