@@ -99,7 +99,8 @@ def validate(connection, expected=None, missing_stores=485):
     check('unknown_nonnull_stores', 'SELECT COUNT(*) FROM orders o LEFT JOIN stores s ON o.StoreID=s.StoreID WHERE o.StoreID IS NOT NULL AND s.StoreID IS NULL')
     check('unmatched_calendar_dates', 'SELECT COUNT(*) FROM orders o LEFT JOIN date_reference d ON o.OrderDate=d.Date WHERE d.Date IS NULL')
     check('unmatched_return_lines', 'SELECT COUNT(*) FROM returns r LEFT JOIN orders o ON r.OrderID=o.OrderID AND r.OrderLineID=o.OrderLineID WHERE o.OrderID IS NULL')
-    check('excess_return_units', 'SELECT COUNT(*) FROM (SELECT r.OrderID,r.OrderLineID FROM returns r JOIN orders o ON r.OrderID=o.OrderID AND r.OrderLineID=o.OrderLineID GROUP BY r.OrderID,r.OrderLineID,o.Quantity HAVING SUM(r.QuantityReturned)>o.Quantity)')
+    check('invalid_order_quantities', 'SELECT COUNT(*) FROM orders WHERE Quantity IS NULL OR Quantity<=0')
+    check('excess_return_units', 'SELECT COUNT(*) FROM (SELECT r.OrderID,r.OrderLineID FROM returns r JOIN orders o ON r.OrderID=o.OrderID AND r.OrderLineID=o.OrderLineID WHERE o.Quantity>0 GROUP BY r.OrderID,r.OrderLineID,o.Quantity HAVING SUM(r.QuantityReturned)>o.Quantity)')
     domains = {'orders': 'Quantity IS NULL OR Quantity<=0 OR UnitPrice IS NULL OR UnitPrice<0 OR DiscountPct IS NULL OR DiscountPct<0 OR DiscountPct>1 OR OrderDate IS NULL',
                'products': 'UnitCost IS NULL OR UnitCost<0',
                'returns': 'QuantityReturned IS NULL OR QuantityReturned<=0',
