@@ -1,156 +1,132 @@
 # Retail Sales & Profitability Analysis | SQL
 
-## Business Problem
+A SQLite case study using synthetic retail data to investigate sales, profitability, returns, and regional revenue targets.
 
-A synthetic multi-channel retailer needs to understand which products,
-regions, membership tiers, and sales channels are driving profitable growth.
-This analysis evaluates sales, gross profit, gross margin, returns, regional
-target attainment, and customer purchasing patterns to identify operational
-and financial improvement opportunities.
+[Source data](data/) | [SQL scripts](sql/) | [Model and metric definitions](sql/01_database_schema.md)
 
-## Tools Used
+> Portfolio project only. The dataset contains no real employer, company, customer, or transaction data. Results illustrate analytical methods, not real business impact.
 
-- SQLite
-- DB Browser for SQLite
-- SQL
-- GitHub
-- Excel and Power BI for supporting analysis and visualization
+## Business problem
 
-## Dataset
+Which products, categories, channels, and regions deserve closer attention when reviewing retail sales and profitability? This project combines order-line data with supporting tables, checks data quality, and uses SQL to produce decision-oriented summaries.
 
-This project uses a synthetic multi-channel retail dataset created for
-portfolio and educational purposes. The dataset contains transactional
-order-line data and supporting dimension tables for customers, products,
-stores, returns, monthly sales targets, and dates.
+## Results at a glance
 
-The dataset covers sales activity from 2024 through 2026 and does not contain
-real company, customer, or employer data.
+| Metric | Reported result |
+|---|---:|
+| Revenue after discounts | $25.91M |
+| Gross profit | $6.61M |
+| Gross margin | 25.50% |
+| Distinct orders | 14,671 |
+| Average order value | $1,766.23 |
 
-## Data Model
+These are the project's reported analysis results. Revenue is calculated after discounts, but revenue and gross profit are not adjusted for customer returns. Returns are analyzed separately. Gross profit is not net profit.
 
-The analysis uses seven related tables:
+[Executive KPI query](sql/04_executive_kpi_summary.sql)
 
-| Table | Description |
+## Three findings and proposed next steps
+
+### 1. Sales volume and margin tell different stories
+
+Apparel generated $7.55M in revenue and $1.99M in gross profit. Electronics had the highest category gross margin at 27.35%, compared with Grocery at 22.20%.
+
+Proposed next step: review Grocery pricing, discounts, supplier costs, and product mix rather than judging categories on revenue alone.
+
+[Category profitability query](sql/06_category_profitability_analysis.sql)
+
+### 2. Return risk deserves product-level investigation
+
+Tools Item 2 generated $761.0K in revenue, with a 7.06% unit return rate and a 14.49% gross margin. Apparel had a 5.65% category return rate.
+
+Proposed next step: investigate quality, fulfillment, packaging, and customer expectations for products combining substantial sales, elevated returns, and low margins. These patterns identify questions; they do not establish causes or quantify savings.
+
+[Product return-risk query](sql/10_product_return_risk_analysis.sql)
+
+### 3. Regional target attainment varies by month
+
+Southeast achieved 107.9% of its October 2025 revenue target, while Northeast achieved 92.8% in December 2024. All five regions met or exceeded their targets in March 2026.
+
+Proposed next step: review monthly patterns to distinguish recurring underperformance from isolated misses.
+
+[Regional target query](sql/09_regional_revenue_target_attainment.sql)
+
+## Tools and methods
+
+- SQLite and DB Browser for SQLite.
+- Joins, CTEs, aggregations, window functions, and reusable views.
+- Row-count checks, relationship checks, KPI calculations, and business interpretation.
+
+## Data model
+
+The synthetic dataset includes sales activity from 2024 through 2026. One row in `orders` represents one product line within an order, identified by `OrderID` and `OrderLineID` together.
+
+| Table | Purpose |
 |---|---|
-| `orders` | Transactional order-line sales data |
-| `customers` | Customer name, membership tier, signup date, and state |
-| `products` | Product hierarchy, unit cost, unit price, and supplier details |
-| `stores` | Store location, region, type, and opening date |
-| `returns` | Returned order-line quantities, dates, and return reasons |
-| `sales_targets` | Monthly revenue targets by region |
-| `date_reference` | Calendar reference table for time-based analysis |
+| `orders` | Order-line sales, quantities, prices, and discounts |
+| `customers` | Customer attributes and membership tiers |
+| `products` | Product hierarchy, unit costs, and supplier details |
+| `stores` | Store attributes and regional assignments |
+| `returns` | Returned quantities, dates, and reasons |
+| `sales_targets` | Monthly regional revenue targets |
+| `date_reference` | Calendar reference attributes |
 
-## Data Grain
+```text
+customers -- CustomerID --> orders <-- ProductID -- products
+stores    -- StoreID ----> orders
+date_reference -- Date -> orders.OrderDate
 
-The `orders` table is the primary fact table. One row represents one product
-line within a customer order, identified by the combination of `OrderID` and
-`OrderLineID`.
+returns -- OrderID + OrderLineID --> orders
 
-## SQL Workflow
+sales_targets -- Month + Region --> monthly regional sales totals
+```
 
-The `sql` folder contains one schema-documentation file and ten executable
-SQL scripts.
+This is a simplified relationship guide. Regional targets are compared with aggregated monthly regional sales, not joined directly to every order line.
 
-### Documentation
+## Calculation choices
 
-- `01_database_schema.md` — Documents the database tables, relationships,
-  business definitions, and data limitations
+- Revenue after discounts = quantity x selling price x (1 - discount percentage).
+- COGS = quantity x product unit cost.
+- Gross profit = revenue after discounts - COGS.
+- Overall gross margin = total gross profit / total revenue, rather than an average of row-level margins.
+- Unit return rate = returned units / units sold.
+- The enriched view uses left joins to retain order lines and labels missing store information as `Unassigned Store`.
+- The executive KPI query uses `NULLIF` to avoid division by zero in margin and average-order-value calculations.
 
-### SQL Scripts
+[Enriched sales view](sql/03_create_orders_enriched_view.sql) | [Metric definitions](sql/01_database_schema.md)
 
-1. `01_row_count_audit.sql` — Validates row counts after CSV import
-2. `02_key_integrity_check.sql` — Checks customer, product, and store joins
-3. `03_create_orders_enriched_view.sql` — Creates a reusable enriched view
-   with revenue, discount, COGS, and gross-profit calculations
-4. `04_executive_kpi_summary.sql` — Calculates executive-level sales and
-   profitability KPIs
-5. `05_monthly_sales_profit_trend.sql` — Analyzes monthly performance and
-   running net revenue
-6. `06_category_profitability_analysis.sql` — Compares category revenue,
-   gross profit, and gross margin
-7. `07_channel_performance_and_returns.sql` — Compares channel sales,
-   profitability, and unit return rates
-8. `08_return_reason_and_category_rate_analysis.sql` — Identifies return
-   drivers and calculates true category return rates
-9. `09_regional_revenue_target_attainment.sql` — Compares regional revenue
-   against monthly targets
-10. `10_product_return_risk_analysis.sql` — Identifies high-revenue products
-    with elevated return risk
+## How to run
 
-## Key Findings & Recommendations
+The following is a manual setup guide for DB Browser for SQLite. CSV import settings and inferred column types should be checked before relying on the outputs.
 
-### 1. Strong overall sales and profitability
+1. Download this repository and create a new SQLite database in DB Browser for SQLite.
+2. Import each CSV in `data/` as a table. Use the first row as column names and retain the original headers. Name each table after its file without `.csv`: `customers`, `date_reference`, `orders`, `products`, `returns`, `sales_targets`, and `stores`.
+3. Review the imported data: quantities, prices, costs, discounts, and targets should be numeric. Preserve identifier values and date strings; check for lost leading zeros or changed date formats. Save the imported changes.
+4. Open and execute `sql/01_row_count_audit.sql`. Review the row counts for all seven tables. This script reports counts; it does not automatically assert that they are correct.
+5. Run `sql/02_key_integrity_check.sql` and review the relationship-check results.
+6. Run `sql/03_create_orders_enriched_view.sql` to create the shared analysis view. The script drops and recreates that view.
+7. Run scripts `04` through `10` individually and inspect each result table.
+8. Compare the executive KPI output with the rounded figures above. Investigate discrepancies rather than changing the data to match the summary.
 
-The retailer generated $25.91M in net revenue and $6.61M in gross profit
-across 14,671 orders, with a 25.50% gross margin and a $1,766.23 average
-order value.
+## SQL workflow
 
-**Recommendation:** Continue monitoring net revenue, gross margin, average
-order value, and discount activity as core executive KPIs. Review discounting
-when revenue growth does not translate into proportional gross-profit growth.
+| Script | Purpose |
+|---|---|
+| [01_row_count_audit.sql](sql/01_row_count_audit.sql) | Report imported row counts |
+| [02_key_integrity_check.sql](sql/02_key_integrity_check.sql) | Check customer, product, and store references |
+| [03_create_orders_enriched_view.sql](sql/03_create_orders_enriched_view.sql) | Centralize joins and sales calculations |
+| [04_executive_kpi_summary.sql](sql/04_executive_kpi_summary.sql) | Summarize company-wide KPIs |
+| [05_monthly_sales_profit_trend.sql](sql/05_monthly_sales_profit_trend.sql) | Analyze monthly results and running revenue |
+| [06_category_profitability_analysis.sql](sql/06_category_profitability_analysis.sql) | Compare category profitability |
+| [07_channel_performance_and_returns.sql](sql/07_channel_performance_and_returns.sql) | Compare channels and unit return rates |
+| [08_return_reason_and_category_rate_analysis.sql](sql/08_return_reason_and_category_rate_analysis.sql) | Analyze return reasons and category rates |
+| [09_regional_revenue_target_attainment.sql](sql/09_regional_revenue_target_attainment.sql) | Compare monthly regional revenue with targets |
+| [10_product_return_risk_analysis.sql](sql/10_product_return_risk_analysis.sql) | Identify products for return-risk investigation |
 
-### 2. Apparel drives sales; Electronics leads on margin
+## Data quality and limitations
 
-Apparel was the largest category, generating $7.55M in net revenue and
-$1.99M in gross profit. Electronics produced the highest gross margin at
-27.35%, while Grocery had the lowest at 22.20%.
-
-**Recommendation:** Protect high-margin Electronics performance while
-reviewing Grocery pricing, promotions, supplier costs, and product mix for
-margin improvement opportunities.
-
-### 3. Year-end seasonality drives the strongest monthly performance
-
-December 2025 produced the highest observed monthly net revenue at $1.39M
-and the highest gross profit at $355.2K. November and December were among
-the strongest sales months in both 2024 and 2025.
-
-**Recommendation:** Use demand forecasts, inventory planning, staffing, and
-promotional calendars to prepare for elevated year-end volume while protecting
-margin during peak periods.
-
-### 4. Curbside has the highest channel return rate
-
-In-Club was the largest channel, generating $14.35M in net revenue. Curbside
-had the highest unit return rate at 5.83%, compared with 5.41% for In-Club
-and 5.21% for Online.
-
-**Recommendation:** Review curbside order accuracy, product substitutions,
-pickup quality, and customer communication. The difference is modest, so this
-should be treated as an investigation priority rather than proof of a process
-failure.
-
-### 5. Apparel and select products present return-risk opportunities
-
-Apparel had the highest category return rate at 5.65% and the largest return
-volume. Tools Item 2 generated $761.0K in net revenue but had a 7.06% return
-rate and a 14.49% gross margin, making it a high-priority product for review.
-
-**Recommendation:** Investigate high-return products by supplier, fulfillment
-process, packaging, product quality, pricing, and customer-expectation factors.
-Prioritize products with both high revenue and low margin because returns may
-have an outsized profit impact.
-
-### 6. Regional target performance varies by month
-
-Regional performance varied by month. For example, Southeast exceeded its
-October 2025 revenue target by $13.7K, achieving 107.9% of plan, while
-Northeast missed its December 2024 target by $19.9K, achieving 92.8%.
-In March 2026, all five regions met or exceeded their revenue targets.
-
-**Recommendation:** Use monthly regional variance reporting to focus reviews
-on persistent underperformance, replicate practices from regions that
-consistently exceed target, and distinguish isolated misses from recurring
-performance patterns.
-
-## Data Quality Notes
-
-- The dataset is synthetic and was created for portfolio and educational use.
-  It does not contain real employer, customer, or company data.
-- All order lines matched to valid customer and product records.
-- 485 order lines did not have a store assignment. These records are retained
-  in company-wide KPIs and labeled `Unassigned Store` in the enriched analysis
-  view. They are excluded from regional target-attainment reporting because
-  they cannot be assigned to a regional target.
-- Revenue, discount, COGS, gross profit, and margin calculations are defined
-  in `sql/03_create_orders_enriched_view.sql`.
+- The documented validation results report that all order lines matched customer and product records.
+- 485 order lines lacked a store assignment. They are retained in company-wide KPIs and labeled `Unassigned Store`, but excluded from regional target reporting.
+- Revenue and gross profit are not return-adjusted and do not represent net earnings after operating expenses.
+- Product unit costs are taken from the product table; the calculation does not model historical cost changes.
+- Findings are descriptive. Suggested actions have not been implemented or evaluated for business impact.
+- The schema Markdown file documents the model; it is not an executable table-creation script.
