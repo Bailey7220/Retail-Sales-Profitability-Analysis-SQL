@@ -2,9 +2,9 @@
 
 A SQLite portfolio case study using synthetic retail data to investigate sales, profitability, returns, and regional revenue targets.
 
-> Data-quality notice: the raw dataset contains 249 negative-quantity order lines, all with missing StoreID. The figures and chart below reproduce the raw snapshot; they are not sales-only or corrected results. A separate sales-only workflow quarantines unresolved lines and their related returns without editing the source data. Its first full-data verification is pending.
+> Data-quality notice: the raw dataset contains 249 negative-quantity order lines, all with missing StoreID. The figures and chart below reproduce the raw snapshot; they are not sales-only or corrected results. A separate sales-only workflow quarantines unresolved lines and their related returns without editing the source data. The maintainer reported a passing workflow on October 22, 2026; see the verification record for scope and evidence limits.
 
-[Data-quality policy](DATA_QUALITY.md) | [Source data](data/) | [SQL scripts](sql/) | [Model definitions](sql/01_database_schema.md) | [Raw reference outputs](results/)
+[Data-quality policy](DATA_QUALITY.md) | [Verification record](VERIFICATION.md) | [Source data](data/) | [SQL scripts](sql/) | [Model definitions](sql/01_database_schema.md) | [Raw reference outputs](results/)
 
 Synthetic portfolio data only. No real employer, company, customer, or transaction data is included. Findings do not represent actual business impact.
 
@@ -64,3 +64,7 @@ The raw snapshot has 44,290 order lines and 2,657 returns. The selected sales-on
 The original generator and intended meaning of negative quantities are unverified. Exclusion is a transparent eligibility decision, not recovered truth. No source quantity is flipped, no return is capped, and no store is guessed. Existing product-risk and profitability conclusions must be reassessed against the labeled sales-only outputs before being presented as current findings.
 
 Tools demonstrated include SQLite, joins, CTEs, aggregations, window functions, reusable views, Python standard-library ingestion, automated checks, and an auditable raw/analytical/quarantine separation. The chart is a static SVG, not an interactive dashboard.
+
+## Licensing
+
+Original code and written documentation are available under the [MIT License](LICENSE), subject to the [licensing scope](LICENSING.md). Source data, reference/output datasets, images, and third-party material are not relicensed by that grant.

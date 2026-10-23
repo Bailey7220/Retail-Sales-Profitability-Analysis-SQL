@@ -39,6 +39,6 @@ The manifest is invalidated at the beginning of each run and published last afte
 
 ## Verification boundaries
 
-Six isolated fixture tests of raw exception validation and partition behavior passed during preparation. Full repository execution, the complete regression suite, and strict validation of the actual sales-only dataset have not yet been verified for this new runner. A workflow definition alone is not a passing run.
+Six isolated fixture tests of raw exception validation and partition behavior passed during preparation. On October 22, 2026, the maintainer subsequently reported that the workflow passed after the portability update. See VERIFICATION.md for the evidence level and limitations; the assistant did not independently retrieve that Actions result. New sales-only financial figures remain unpublished pending review.
 
 Do not claim improved business performance, recovered source intent, or a fully clean original dataset. Sales-only results describe an eligible subset. July 2026 is incomplete; the existing regional query reports matched sales/target combinations only. Revenue is after discounts and is not adjusted for returns. Reassess conclusions and any Power BI comparison before updating headline portfolio metrics.
