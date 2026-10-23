@@ -1,0 +1,2 @@
+# Source hashes identify exact CSV bytes, independent of checkout OS.
+/data/*.csv -text

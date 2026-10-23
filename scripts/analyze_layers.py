@@ -8,6 +8,7 @@ import tempfile
 from decimal import Decimal
 from pathlib import Path
 import reproduce as r
+from source_fingerprints import fingerprint_sources
 
 SOURCE_HASHES = {
     'stores': '8e6305ed4de31e398da49888c7d3233463e05eb1b92d58fe72f0826175f15bd1',
@@ -93,7 +94,7 @@ def run(root):
     build = root / 'build'
     build.mkdir(exist_ok=True)
     (build / 'layers_manifest.json').unlink(missing_ok=True)
-    inputs = {str(Path('data') / (table + '.csv')): hashlib.sha256((root / 'data' / (table + '.csv')).read_bytes()).hexdigest() for table in SOURCE_HASHES}
+    inputs = fingerprint_sources(root, SOURCE_HASHES)
     for table, expected in SOURCE_HASHES.items():
         if inputs[f'data/{table}.csv'] != expected:
             raise ValueError(f'{table}: raw snapshot hash changed; review provenance and policy explicitly')
@@ -129,8 +130,8 @@ def run(root):
         for folder in ['sql','results']:
             for path in sorted((root / folder).glob('*')):
                 if path.is_file():
-                    inputs[str(path.relative_to(root))] = hashlib.sha256(path.read_bytes()).hexdigest()
-        for name in ['reproduce.py','analyze_layers.py']:
+                    inputs[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+        for name in ['reproduce.py','analyze_layers.py','source_fingerprints.py']:
             inputs['scripts/' + name] = hashlib.sha256((root / 'scripts' / name).read_bytes()).hexdigest()
         report.update(python=r.platform.python_version(), sqlite=sqlite3.sqlite_version, sha256=inputs)
         (stage / 'layers_manifest.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
